@@ -3,7 +3,8 @@ from config import CHROMIUM_EXECUTABLE
 
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(executable_path=CHROMIUM_EXECUTABLE, headless=False)
-    page = browser.new_page()
+    context = browser.new_context()
+    page = context.new_page()
 
     page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
 
@@ -25,3 +26,4 @@ with sync_playwright() as playwright:
 
     dashboard_h6 = page.get_by_test_id('dashboard-toolbar-title-text')
     expect(dashboard_h6).to_be_visible()
+    expect(dashboard_h6).to_have_text("Dashboard")
