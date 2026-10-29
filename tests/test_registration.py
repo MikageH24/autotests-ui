@@ -1,7 +1,10 @@
+import pytest
 from playwright.sync_api import sync_playwright, expect
 from config import CHROMIUM_EXECUTABLE
 
 
+@pytest.mark.regression
+@pytest.mark.registration
 def test_successful_registration():
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(executable_path=CHROMIUM_EXECUTABLE, headless=False)
