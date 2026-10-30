@@ -1,28 +1,14 @@
 import pytest
-from playwright.sync_api import expect, Page
+from pages.registration_page import RegistrationPage
+from pages.dashboard_page import DashboardPage
 
 
 @pytest.mark.regression
 @pytest.mark.registration
-def test_successful_registration(chromium_page: Page):
-    chromium_page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+def test_successful_registration(registration_page: RegistrationPage, dashboard_page: DashboardPage):
 
-    email_input = chromium_page.get_by_test_id('registration-form-email-input').locator('input')
-    expect(email_input).to_be_visible()
-    email_input.fill("user.name@gmail.com")
+    registration_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
+    registration_page.fill_registration_form(email="user.name@gmail.com", username="username", password="password")
+    registration_page.click_registration_button()
 
-    username_input = chromium_page.get_by_test_id('registration-form-username-input').locator('input')
-    expect(username_input).to_be_visible()
-    username_input.fill("username")
-
-    password_input = chromium_page.get_by_test_id('registration-form-password-input').locator('input')
-    expect(password_input).to_be_visible()
-    password_input.fill("password")
-
-    registration_button = chromium_page.get_by_test_id('registration-page-registration-button')
-    expect(registration_button).to_be_enabled()
-    registration_button.click()
-
-    dashboard_h6 = chromium_page.get_by_test_id('dashboard-toolbar-title-text')
-    expect(dashboard_h6).to_be_visible()
-    expect(dashboard_h6).to_have_text("Dashboard")
+    dashboard_page.check_visible_dashboard_title()
