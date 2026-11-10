@@ -1,2 +1,17 @@
-/**/__pycache__
-/**/.pytest_cache
+# pycharm
+.idea
+
+# python
+.venv
+__pycache__
+tests/pytest
+
+# allure
+allure-results
+allure-report
+
+# testing artifacts
+*.html
+*.json
+videos
+tracing
