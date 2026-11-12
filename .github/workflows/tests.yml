@@ -54,7 +54,7 @@ jobs:
 
 
     steps:
-      # Скачиваем папку allure results
+      # Скачиваем папку allure-results
       - name: Download Allure Results
         uses: actions/download-artifact@v5
         with:
