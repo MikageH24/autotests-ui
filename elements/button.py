@@ -9,7 +9,7 @@ logger = get_logger("BUTTON")
 
 class Button(BaseElement):
     @property
-    def type_of(self) -> str:  # Переопределяем свойство  type_of
+    def type_of(self) -> str:  # Переопределяем свойство type_of
         return "button"
 
     def check_enabled(self, nth: int = 0, **kwargs):
